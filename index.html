@@ -88,7 +88,7 @@
             </a>
         </div>
 
-        <!-- ===== ปุ่ม EBC Broker ใหม่ ===== -->
+        <!-- ===== ปุ่ม EBC Broker ===== -->
         <div class="mb-4">
             <a 
                 href="https://shorturl.asia/gDceE" 
@@ -96,7 +96,6 @@
                 class="ebc-btn block w-full text-white font-semibold py-3 px-6 rounded-full text-center"
             >
                 <span class="flex items-center justify-center gap-3">
-                    <!-- EBC Logo SVG (recreated from brand identity) -->
                     <span class="flex items-center gap-1">
                         <svg width="22" height="22" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="20" cy="20" r="19" stroke="#60a5fa" stroke-width="1.5" fill="none"/>
@@ -106,19 +105,18 @@
                     </span>
                     <span class="text-gray-200 text-sm font-medium">|</span>
                     <span class="text-sm font-semibold tracking-wide text-blue-100">สนใจเปิด Broker</span>
-                    <!-- Arrow icon -->
                     <svg class="w-4 h-4 text-blue-300 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                     </svg>
                 </span>
             </a>
         </div>
-        <!-- ===== จบปุ่ม EBC ===== -->
 
         <!-- ปุ่มดูรายละเอียดคอร์ส -->
         <div class="mb-8">
             <a 
                 href="#course-details"
+                onclick="setTimeout(function(){ history.replaceState(null, null, window.location.pathname); }, 100);"
                 class="block w-full bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-white font-semibold py-3 px-6 rounded-full shadow-lg shadow-purple-600/50 hover:shadow-purple-500/60 transition-all duration-200 text-center"
             >
                 <span class="flex items-center justify-center">
@@ -168,7 +166,8 @@
                     <p class="text-gray-300 text-sm mb-4 leading-relaxed">เรียนจบ บอกลากราฟหลอก เข้าใจตลาดทันที</p>
                     <a 
                         href="#course-details"
-                        class="block w-full bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white font-semibold py-3 px-6 rounded-full text-center transition-all duration-200 shadow-lg shadow-red-600/50"
+                        onclick="setTimeout(function(){ history.replaceState(null, null, window.location.pathname); }, 100);"
+                        class="block w-full bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover้to-red-400 text-white font-semibold py-3 px-6 rounded-full text-center transition-all duration-200 shadow-lg shadow-red-600/50"
                     >
                         ดูรายละเอียดคอร์ส
                     </a>
@@ -252,5 +251,14 @@
         </div>
 
     </div>
+
+    <script>
+        // ป้องกันหน้าเลื่อนลงเองตอนโหลด
+        if (window.location.hash) {
+            history.replaceState(null, null, window.location.pathname);
+            window.scrollTo(0, 0);
+        }
+    </script>
+
 </body>
 </html>
