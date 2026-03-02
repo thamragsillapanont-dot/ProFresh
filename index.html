@@ -7,20 +7,44 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @keyframes pulse-glow {
-            0%, 100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.7;
-                transform: scale(1.05);
-            }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
         }
-        .free-badge {
-            animation: pulse-glow 1.5s ease-in-out infinite;
+        .free-badge { animation: pulse-glow 1.5s ease-in-out infinite; }
+        html { scroll-behavior: smooth; }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
         }
-        html {
-            scroll-behavior: smooth;
+        .ebc-btn {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 70%, #1a1a2e 100%);
+            border: 1px solid rgba(99, 179, 237, 0.35);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .ebc-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(147,197,253,0.15), transparent);
+            transition: left 0.5s ease;
+        }
+        .ebc-btn:hover::before { left: 150%; }
+        .ebc-btn:hover {
+            border-color: rgba(99, 179, 237, 0.7);
+            box-shadow: 0 0 20px rgba(59,130,246,0.35), 0 4px 15px rgba(0,0,0,0.4);
+            transform: translateY(-1px);
+        }
+        .ebc-logo-text {
+            font-family: 'Georgia', serif;
+            font-weight: 900;
+            font-size: 1.1rem;
+            letter-spacing: 0.05em;
+            color: #93c5fd;
         }
     </style>
 </head>
@@ -30,25 +54,16 @@
         
         <!-- ส่วนโปรไฟล์ -->
         <div class="text-center mb-8">
-            <!-- ภาพปกด้านหลัง -->
             <div class="relative -mx-4 mb-8">
                 <img 
                     src="https://i.postimg.cc/SQ9gc9RG/sanea-khxng-kh-nmi-cape-nt-xngkhe-a-yexa-khe-ath-kc-nghwa-di-th-kx-xde-xr-tae-xx-de-xr-th-di-cape-nt-xngm-kh-nphaph.png" 
                     alt="Cover" 
                     class="w-full h-56 object-cover rounded-t-lg"
                 >
-                <!-- รูปโปรไฟล์วงกลมทับบนภาพปก -->
-                <img 
-                    src="https://i.postimg.cc/hjhyV9vt/MEITU-20251229-050121560.jpg" 
-                    alt="PRO FRESH Profile" 
-                    class="w-24 h-24 rounded-full mx-auto shadow-lg shadow-purple-500/50 object-cover border-4 border-gray-900 absolute -bottom-12 left-1/2 transform -translate-x-1/2"
-                >
             </div>
             
-            <!-- ชื่อ -->
-            <h1 class="text-2xl font-bold text-white mb-3 mt-14">PRO FRESH</h1>
+            <h1 class="text-2xl font-bold text-white mb-3 mt-2">PRO FRESH</h1>
             
-            <!-- ข้อความแนะนำตัว -->
             <p class="text-gray-300 text-sm leading-relaxed px-4">
                 สอน MULTIVERSE Timeframe จากกราฟสู่กำไร<br>
                 จากความรู้สู่อิสระภาพ📈<br>
@@ -58,7 +73,7 @@
         </div>
 
         <!-- ปุ่ม Social - LINE -->
-        <div class="mb-6">
+        <div class="mb-4">
             <a 
                 href="https://lin.ee/AnwMO9t" 
                 target="_blank"
@@ -72,6 +87,33 @@
                 </span>
             </a>
         </div>
+
+        <!-- ===== ปุ่ม EBC Broker ใหม่ ===== -->
+        <div class="mb-4">
+            <a 
+                href="https://shorturl.asia/gDceE" 
+                target="_blank"
+                class="ebc-btn block w-full text-white font-semibold py-3 px-6 rounded-full text-center"
+            >
+                <span class="flex items-center justify-center gap-3">
+                    <!-- EBC Logo SVG (recreated from brand identity) -->
+                    <span class="flex items-center gap-1">
+                        <svg width="22" height="22" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="20" cy="20" r="19" stroke="#60a5fa" stroke-width="1.5" fill="none"/>
+                            <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Georgia,serif" font-weight="900" font-size="14" fill="#93c5fd" letter-spacing="0.5">EBC</text>
+                        </svg>
+                        <span class="ebc-logo-text">EBC</span>
+                    </span>
+                    <span class="text-gray-200 text-sm font-medium">|</span>
+                    <span class="text-sm font-semibold tracking-wide text-blue-100">สนใจเปิด Broker</span>
+                    <!-- Arrow icon -->
+                    <svg class="w-4 h-4 text-blue-300 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                    </svg>
+                </span>
+            </a>
+        </div>
+        <!-- ===== จบปุ่ม EBC ===== -->
 
         <!-- ปุ่มดูรายละเอียดคอร์ส -->
         <div class="mb-8">
@@ -98,18 +140,12 @@
                     alt="E-Book MULTIVERSE" 
                     class="w-full h-auto object-cover rounded-t-2xl"
                 >
-                
                 <div class="p-5">
                     <div class="inline-block bg-gradient-to-r from-green-600 to-green-500 text-white text-sm font-bold px-4 py-2 rounded-full mb-2 free-badge shadow-lg shadow-green-500/50">
                         FREE
                     </div>
-                    
                     <h3 class="text-lg font-bold text-white mb-2">แจกตัวอย่าง E-Book FREE : MULTIVERSE</h3>
-                    
-                    <p class="text-gray-300 text-sm mb-4 leading-relaxed">
-                        ปูพื้นฐาน MULTIVERSE สู่กำไรอย่างยั่งยืน
-                    </p>
-                    
+                    <p class="text-gray-300 text-sm mb-4 leading-relaxed">ปูพื้นฐาน MULTIVERSE สู่กำไรอย่างยั่งยืน</p>
                     <a 
                         href="https://drive.google.com/file/d/1SxqxLmOHnGFPCASYLeYjeJxQdLKX1h36/view?usp=drive_link" 
                         target="_blank"
@@ -127,14 +163,9 @@
                     alt="คอร์ส MULTIVERSE"
                     class="w-full h-auto rounded-t-2xl"
                 >
-                
                 <div class="p-5">
                     <h3 class="text-lg font-bold text-white mb-2">คอร์ส MULTIVERSE</h3>
-                    
-                    <p class="text-gray-300 text-sm mb-4 leading-relaxed">
-                        เรียนจบ บอกลากราฟหลอก เข้าใจตลาดทันที
-                    </p>
-                    
+                    <p class="text-gray-300 text-sm mb-4 leading-relaxed">เรียนจบ บอกลากราฟหลอก เข้าใจตลาดทันที</p>
                     <a 
                         href="#course-details"
                         class="block w-full bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white font-semibold py-3 px-6 rounded-full text-center transition-all duration-200 shadow-lg shadow-red-600/50"
@@ -159,26 +190,20 @@
                     alt="GO TO THE MOON THE LEGEND TRADER" 
                     class="w-full h-auto object-cover"
                 >
-                
                 <div class="p-6">
                     <h3 class="text-xl font-bold text-white mb-3 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
                         🚀 GO TO THE MOON THE LEGEND TRADER
                     </h3>
-                    
                     <p class="text-purple-300 font-semibold text-base mb-3">
                         ครบ จบ ทางลัดสู่มือโปร<br>
                         <span class="text-gray-300 text-sm">(แล้วการเทรดจะเป็นเรื่องง่ายสำหรับคุณ)</span>
                     </p>
-                    
                     <div class="bg-gray-900/50 rounded-xl p-4 mb-4 border border-purple-600/30">
-                        <p class="text-sm text-gray-300 mb-2">
-                            <span class="text-purple-400 font-semibold">✨ เหมาะกับใคร</span>
-                        </p>
+                        <p class="text-sm text-gray-300 mb-2"><span class="text-purple-400 font-semibold">✨ เหมาะกับใคร</span></p>
                         <p class="text-sm text-gray-300 leading-relaxed">
                             สำหรับคนที่อยาก <span class="text-yellow-400 font-semibold">"เข้าใจตลาดทั้งระบบ"</span> ไม่เทรดมั่ว อ่านโครงสร้างแก่นตลาดออก หยุดปัญหา <span class="text-red-400 font-semibold">"กราฟหลอก"</span>
                         </p>
                     </div>
-                    
                     <a 
                         href="https://lin.ee/AnwMO9t" 
                         target="_blank"
@@ -196,26 +221,20 @@
                     alt="DEMAND LINE & SUPPLY LINE" 
                     class="w-full h-auto object-cover"
                 >
-                
                 <div class="p-6">
                     <h3 class="text-xl font-bold text-white mb-3 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
                         📊 DEMAND LINE & SUPPLY LINE
                     </h3>
-                    
                     <p class="text-blue-300 font-semibold text-base mb-3">
                         จุดเข้าจากพฤติกรรมราคา<br>
                         <span class="text-gray-300 text-sm">(จุดเข้ามีสถิติรองรับจริง)</span>
                     </p>
-                    
                     <div class="bg-gray-900/50 rounded-xl p-4 mb-4 border border-blue-600/30">
-                        <p class="text-sm text-gray-300 mb-2">
-                            <span class="text-blue-400 font-semibold">✨ เหมาะกับใคร</span>
-                        </p>
+                        <p class="text-sm text-gray-300 mb-2"><span class="text-blue-400 font-semibold">✨ เหมาะกับใคร</span></p>
                         <p class="text-sm text-gray-300 leading-relaxed">
                             สำหรับคนที่เข้าเทรดแล้ว <span class="text-red-400 font-semibold">"ลังเลทุกครั้ง"</span> ไม่รู้ว่าควรเข้าจุดไหน อยากได้จุดเข้าแบบมีเหตุผล ทำซ้ำได้ และใช้ได้จริง <span class="text-green-400 font-semibold">"ไม่เดากราฟ"</span>
                         </p>
                     </div>
-                    
                     <a 
                         href="https://lin.ee/AnwMO9t" 
                         target="_blank"
