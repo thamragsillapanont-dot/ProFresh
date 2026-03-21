@@ -31,6 +31,93 @@
         /* Tap hint animation */
         @keyframes bounce-hint { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
         .tap-hint { animation: bounce-hint 2s ease-in-out infinite; }
+
+        /* ========== BOTTOM SHEET MODAL ========== */
+        #course-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        #course-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        #course-sheet {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) translateY(100%);
+            width: 100%;
+            max-width: 448px;
+            max-height: 90dvh;
+            z-index: 101;
+            background: linear-gradient(180deg, #0f0a1e 0%, #0a0714 100%);
+            border-top: 1px solid rgba(167,139,250,0.3);
+            border-radius: 24px 24px 0 0;
+            overflow-y: auto;
+            transition: transform 0.42s cubic-bezier(0.32, 0.72, 0, 1);
+            overscroll-behavior: contain;
+        }
+        #course-sheet.active {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Scrollbar inside sheet */
+        #course-sheet::-webkit-scrollbar { width: 4px; }
+        #course-sheet::-webkit-scrollbar-track { background: transparent; }
+        #course-sheet::-webkit-scrollbar-thumb { background: rgba(167,139,250,0.3); border-radius: 2px; }
+
+        /* Drag handle */
+        .sheet-handle {
+            width: 40px; height: 4px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 2px;
+            margin: 12px auto 0;
+        }
+
+        /* Sheet close button */
+        .sheet-close {
+            position: sticky;
+            top: 0;
+            display: flex;
+            justify-content: flex-end;
+            padding: 8px 16px 0;
+            background: linear-gradient(180deg, #0f0a1e 80%, transparent 100%);
+            z-index: 10;
+        }
+        .sheet-close-btn {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.15);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: white;
+        }
+        .sheet-close-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.1);
+        }
+
+        /* Course card inside sheet */
+        .course-card {
+            background: linear-gradient(135deg, rgba(30,20,50,0.8) 0%, rgba(20,14,35,0.9) 100%);
+            border: 1px solid rgba(167,139,250,0.25);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+        .course-card:hover {
+            border-color: rgba(167,139,250,0.5);
+            box-shadow: 0 0 24px rgba(139,92,246,0.2);
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-black via-gray-900 to-red-950 min-h-screen">
@@ -43,14 +130,13 @@
             </div>
             <h1 class="text-2xl font-bold text-white mb-4 mt-2">PRO FRESH</h1>
 
-            <!-- หัวข้อนำ + นิ้วชี้ -->
             <div class="flex items-center justify-center gap-2 mb-3">
                 <span class="tap-hint text-base">👇</span>
                 <span class="tap-hint text-gray-400 text-xs tracking-widest uppercase" style="animation-delay: 0.15s;">ติดตามได้ที่</span>
                 <span class="tap-hint text-base" style="animation-delay: 0.3s;">👇</span>
             </div>
 
-            <!-- Social Icons + Labels -->
+            <!-- Social Icons -->
             <div class="flex justify-center items-start gap-5 mb-5">
                 <a href="https://www.youtube.com/@ProFreshGOTOTHEMOON" target="_blank" class="social-item">
                     <div class="social-btn" style="background-color:#FF0000;">
@@ -79,10 +165,10 @@
             </div>
 
             <p class="text-gray-300 text-sm leading-relaxed px-4">
-                สอน MULTIVERSE Timeframe จากกราฟสู่กำไร<br>
+                สอนเทรดระบบ MULTIVERSE จากกราฟสู่กำไร<br>
                 จากความรู้สู่อิสระภาพ📈<br>
                 สอน Logic คุม Risk โฟกัสการทำกำไรอย่างยั่งยืน<br>
-                <span class="text-yellow-400 font-semibold">แจกคอร์สฟรี เปิดรอบทุกเดือน</span>
+                <span class="text-yellow-400 font-semibold">แจกคอร์สฟรี / สอนสดในกลุ่มไลน์</span>
             </p>
         </div>
 
@@ -96,27 +182,23 @@
             </a>
         </div>
 
-        <!-- ปุ่ม EBC -->
+        <!-- ปุ่มดูคอร์ส → เปิด Bottom Sheet -->
         <div class="mb-4">
-            <a href="https://www.toebc.com/Fresh008" target="_blank" class="elegant-btn btn-ebc">
-                <span class="flex items-center justify-center gap-3">
-                    <span class="flex items-center gap-1">
-                        <svg width="22" height="22" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="19" stroke="#60a5fa" stroke-width="1.5" fill="none"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Georgia,serif" font-weight="900" font-size="14" fill="#93c5fd" letter-spacing="0.5">EBC</text></svg>
-                        <span class="ebc-logo-text">EBC</span>
-                    </span>
-                    <span class="text-gray-400 text-sm">|</span>
-                    <span class="text-sm tracking-wide text-blue-100">สนใจเปิด Broker</span>
-                    <svg class="w-4 h-4 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                </span>
-            </a>
-        </div>
-
-        <!-- ปุ่มดูคอร์ส -->
-        <div class="mb-8">
-            <a href="#course-details" onclick="setTimeout(function(){ history.replaceState(null, null, window.location.pathname); }, 100);" class="elegant-btn btn-course">
+            <button onclick="openCourseSheet()" class="elegant-btn btn-course w-full cursor-pointer">
                 <span class="flex items-center justify-center gap-2">
                     <svg class="w-5 h-5 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
                     <span class="text-purple-100 text-sm tracking-wide">ดูรายละเอียดคอร์สทั้งหมด</span>
+                </span>
+            </button>
+        </div>
+
+        <!-- ปุ่ม EBC -->
+        <div class="mb-8">
+            <a href="https://www.toebc.com/Fresh008" target="_blank" class="elegant-btn btn-ebc">
+                <span class="flex items-center justify-center gap-2">
+                    <svg width="20" height="20" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="19" stroke="#60a5fa" stroke-width="1.5" fill="none"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Georgia,serif" font-weight="900" font-size="14" fill="#93c5fd" letter-spacing="0.5">EBC</text></svg>
+                    <span class="text-sm tracking-wide text-blue-100">สนใจเปิด Broker EBC</span>
+                    <svg class="w-4 h-4 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                 </span>
             </a>
         </div>
@@ -137,45 +219,93 @@
                 <div class="p-5">
                     <h3 class="text-lg font-bold text-white mb-2">คอร์ส MULTIVERSE</h3>
                     <p class="text-gray-300 text-sm mb-4 leading-relaxed">เรียนจบ บอกลากราฟหลอก เข้าใจตลาดทันที</p>
-                    <a href="#course-details" onclick="setTimeout(function(){ history.replaceState(null, null, window.location.pathname); }, 100);" class="block w-full bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white font-semibold py-3 px-6 rounded-full text-center transition-all duration-200 shadow-lg shadow-red-600/50">ดูรายละเอียดคอร์ส</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section คอร์ส -->
-        <div id="course-details" class="mt-12 space-y-6">
-            <h2 class="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 bg-clip-text text-transparent">📚 คอร์สของเรา</h2>
-            <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-xl shadow-purple-900/30 overflow-hidden hover:shadow-2xl hover:shadow-purple-800/40 transition-all duration-200 border border-purple-700">
-                <img src="https://i.postimg.cc/3NsKVJMF/LEGEND.png" alt="GO TO THE MOON" class="w-full h-auto object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold text-white mb-3 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">🚀 GO TO THE MOON THE LEGEND TRADER</h3>
-                    <p class="text-purple-300 font-semibold text-base mb-3">ครบ จบ ทางลัดสู่มือโปร<br><span class="text-gray-300 text-sm">(แล้วการเทรดจะเป็นเรื่องง่ายสำหรับคุณ)</span></p>
-                    <div class="bg-gray-900/50 rounded-xl p-4 mb-4 border border-purple-600/30">
-                        <p class="text-sm text-gray-300 mb-2"><span class="text-purple-400 font-semibold">✨ เหมาะกับใคร</span></p>
-                        <p class="text-sm text-gray-300 leading-relaxed">สำหรับคนที่อยาก <span class="text-yellow-400 font-semibold">"เข้าใจตลาดทั้งระบบ"</span> ไม่เทรดมั่ว อ่านโครงสร้างแก่นตลาดออก หยุดปัญหา <span class="text-red-400 font-semibold">"กราฟหลอก"</span></p>
-                    </div>
-                    <a href="https://lin.ee/AnwMO9t" target="_blank" class="block w-full bg-gradient-to-r from-yellow-600 to-orange-500 hover:from-yellow-500 hover:to-orange-400 text-white font-semibold py-3 px-6 rounded-full text-center transition-all duration-200 shadow-lg shadow-yellow-600/50">สอบถามรายละเอียดเพิ่มเติม</a>
-                </div>
-            </div>
-            <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-xl shadow-purple-900/30 overflow-hidden hover:shadow-2xl hover:shadow-purple-800/40 transition-all duration-200 border border-purple-700">
-                <img src="https://i.postimg.cc/Sx5wGthT/DS.png" alt="DEMAND LINE & SUPPLY LINE" class="w-full h-auto object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold text-white mb-3 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">📊 DEMAND LINE & SUPPLY LINE</h3>
-                    <p class="text-blue-300 font-semibold text-base mb-3">จุดเข้าจากพฤติกรรมราคา<br><span class="text-gray-300 text-sm">(จุดเข้ามีสถิติรองรับจริง)</span></p>
-                    <div class="bg-gray-900/50 rounded-xl p-4 mb-4 border border-blue-600/30">
-                        <p class="text-sm text-gray-300 mb-2"><span class="text-blue-400 font-semibold">✨ เหมาะกับใคร</span></p>
-                        <p class="text-sm text-gray-300 leading-relaxed">สำหรับคนที่เข้าเทรดแล้ว <span class="text-red-400 font-semibold">"ลังเลทุกครั้ง"</span> ไม่รู้ว่าควรเข้าจุดไหน อยากได้จุดเข้าแบบมีเหตุผล ทำซ้ำได้ และใช้ได้จริง <span class="text-green-400 font-semibold">"ไม่เดากราฟ"</span></p>
-                    </div>
-                    <a href="https://lin.ee/AnwMO9t" target="_blank" class="block w-full bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-semibold py-3 px-6 rounded-full text-center transition-all duration-200 shadow-lg shadow-blue-600/50">สอบถามรายละเอียดเพิ่มเติม</a>
+                    <button onclick="openCourseSheet()" class="block w-full bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white font-semibold py-3 px-6 rounded-full text-center transition-all duration-200 shadow-lg shadow-red-600/50 cursor-pointer">ดูรายละเอียดคอร์ส</button>
                 </div>
             </div>
         </div>
 
         <div class="text-center mt-8 text-gray-500 text-xs">© 2024 PRO FRESH. All rights reserved</div>
     </div>
+
+    <!-- ============ OVERLAY ============ -->
+    <div id="course-overlay" onclick="closeCourseSheet()"></div>
+
+    <!-- ============ BOTTOM SHEET ============ -->
+    <div id="course-sheet">
+        <div class="sheet-handle"></div>
+        <div class="sheet-close">
+            <button class="sheet-close-btn" onclick="closeCourseSheet()">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+        </div>
+
+        <div class="px-4 pb-10">
+            <h2 class="text-2xl font-bold text-center mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 bg-clip-text text-transparent">📚 คอร์สของเรา</h2>
+
+            <!-- คอร์ส 1 -->
+            <div class="course-card mb-5">
+                <img src="https://i.postimg.cc/3NsKVJMF/LEGEND.png" alt="GO TO THE MOON" class="w-full h-auto object-cover">
+                <div class="p-5">
+                    <h3 class="text-lg font-bold text-white mb-2 bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">🚀 GO TO THE MOON THE LEGEND TRADER</h3>
+                    <p class="text-purple-300 font-semibold text-sm mb-2">ครบ จบ ทางลัดสู่มือโปร<br><span class="text-gray-400 text-xs">(แล้วการเทรดจะเป็นเรื่องง่ายสำหรับคุณ)</span></p>
+                    <div class="bg-black/30 rounded-xl p-3 mb-4 border border-purple-600/20">
+                        <p class="text-xs text-gray-400 mb-1"><span class="text-purple-400 font-semibold">✨ เหมาะกับใคร</span></p>
+                        <p class="text-xs text-gray-300 leading-relaxed">สำหรับคนที่อยาก <span class="text-yellow-400 font-semibold">"เข้าใจตลาดทั้งระบบ"</span> ไม่เทรดมั่ว อ่านโครงสร้างแก่นตลาดออก หยุดปัญหา <span class="text-red-400 font-semibold">"กราฟหลอก"</span></p>
+                    </div>
+                    <a href="https://lin.ee/AnwMO9t" target="_blank" class="block w-full bg-gradient-to-r from-yellow-600 to-orange-500 hover:from-yellow-500 hover:to-orange-400 text-white font-semibold py-3 px-6 rounded-full text-center transition-all duration-200 shadow-lg shadow-yellow-600/30 text-sm">สอบถามรายละเอียดเพิ่มเติม</a>
+                </div>
+            </div>
+
+            <!-- คอร์ส 2 -->
+            <div class="course-card mb-2">
+                <img src="https://i.postimg.cc/Sx5wGthT/DS.png" alt="DEMAND LINE & SUPPLY LINE" class="w-full h-auto object-cover">
+                <div class="p-5">
+                    <h3 class="text-lg font-bold text-white mb-2 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">📊 DEMAND LINE & SUPPLY LINE</h3>
+                    <p class="text-blue-300 font-semibold text-sm mb-2">จุดเข้าจากพฤติกรรมราคา<br><span class="text-gray-400 text-xs">(จุดเข้ามีสถิติรองรับจริง)</span></p>
+                    <div class="bg-black/30 rounded-xl p-3 mb-4 border border-blue-600/20">
+                        <p class="text-xs text-gray-400 mb-1"><span class="text-blue-400 font-semibold">✨ เหมาะกับใคร</span></p>
+                        <p class="text-xs text-gray-300 leading-relaxed">สำหรับคนที่เข้าเทรดแล้ว <span class="text-red-400 font-semibold">"ลังเลทุกครั้ง"</span> ไม่รู้ว่าควรเข้าจุดไหน อยากได้จุดเข้าแบบมีเหตุผล ทำซ้ำได้ <span class="text-green-400 font-semibold">"ไม่เดากราฟ"</span></p>
+                    </div>
+                    <a href="https://lin.ee/AnwMO9t" target="_blank" class="block w-full bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-semibold py-3 px-6 rounded-full text-center transition-all duration-200 shadow-lg shadow-blue-600/30 text-sm">สอบถามรายละเอียดเพิ่มเติม</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        if (window.location.hash) { history.replaceState(null, null, window.location.pathname); window.scrollTo(0, 0); }
+        // Clean hash on load
+        if (window.location.hash) {
+            history.replaceState(null, null, window.location.pathname);
+            window.scrollTo(0, 0);
+        }
+
+        function openCourseSheet() {
+            document.getElementById('course-overlay').classList.add('active');
+            document.getElementById('course-sheet').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            // Reset scroll inside sheet
+            document.getElementById('course-sheet').scrollTop = 0;
+        }
+
+        function closeCourseSheet() {
+            document.getElementById('course-overlay').classList.remove('active');
+            document.getElementById('course-sheet').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeCourseSheet();
+        });
+
+        // Swipe down to close
+        let startY = 0;
+        const sheet = document.getElementById('course-sheet');
+        sheet.addEventListener('touchstart', e => { startY = e.touches[0].clientY; }, { passive: true });
+        sheet.addEventListener('touchend', e => {
+            const diff = e.changedTouches[0].clientY - startY;
+            if (diff > 80 && sheet.scrollTop === 0) closeCourseSheet();
+        }, { passive: true });
     </script>
 </body>
 </html>
-
