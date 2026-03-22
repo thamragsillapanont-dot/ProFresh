@@ -19,151 +19,61 @@
         .btn-ebc:hover { border-color: rgba(99,179,237,0.7); box-shadow: 0 0 20px rgba(59,130,246,0.35), 0 4px 15px rgba(0,0,0,0.4); }
         .btn-course { background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 40%, #4a2080 70%, #1a0a2e 100%); border: 1px solid rgba(167,139,250,0.35); box-shadow: 0 2px 12px rgba(139,92,246,0.2); }
         .btn-course:hover { border-color: rgba(167,139,250,0.7); box-shadow: 0 0 20px rgba(139,92,246,0.35), 0 4px 15px rgba(0,0,0,0.4); }
-        .ebc-logo-text { font-family: 'Georgia', serif; font-weight: 900; font-size: 1.1rem; letter-spacing: 0.05em; color: #93c5fd; }
-
-        /* Social buttons */
         .social-item { display: flex; flex-direction: column; align-items: center; gap: 6px; text-decoration: none; }
         .social-btn { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; }
         .social-btn:hover { transform: translateY(-3px) scale(1.1); }
         .social-btn svg { width: 21px; height: 21px; }
         .social-label { font-size: 10px; color: #9ca3af; letter-spacing: 0.05em; font-weight: 500; }
-
-        /* Tap hint animation */
         @keyframes bounce-hint { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
         .tap-hint { animation: bounce-hint 2s ease-in-out infinite; }
 
-        /* ========== BOTTOM SHEET MODAL ========== */
-        #course-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(4px);
-            z-index: 100;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-        #course-overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        #course-sheet {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%) translateY(100%);
-            width: 100%;
-            max-width: 448px;
-            max-height: 90dvh;
-            z-index: 101;
-            background: linear-gradient(180deg, #0f0a1e 0%, #0a0714 100%);
-            border-top: 1px solid rgba(167,139,250,0.3);
-            border-radius: 24px 24px 0 0;
-            overflow-y: auto;
-            transition: transform 0.42s cubic-bezier(0.32, 0.72, 0, 1);
-            overscroll-behavior: contain;
-        }
-        #course-sheet.active {
-            transform: translateX(-50%) translateY(0);
-        }
-
-        /* Scrollbar inside sheet */
+        #course-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        #course-overlay.active { opacity: 1; pointer-events: all; }
+        #course-sheet { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%) translateY(100%); width: 100%; max-width: 448px; max-height: 90dvh; z-index: 101; background: linear-gradient(180deg, #0f0a1e 0%, #0a0714 100%); border-top: 1px solid rgba(167,139,250,0.3); border-radius: 24px 24px 0 0; overflow-y: auto; transition: transform 0.42s cubic-bezier(0.32, 0.72, 0, 1); overscroll-behavior: contain; }
+        #course-sheet.active { transform: translateX(-50%) translateY(0); }
         #course-sheet::-webkit-scrollbar { width: 4px; }
-        #course-sheet::-webkit-scrollbar-track { background: transparent; }
         #course-sheet::-webkit-scrollbar-thumb { background: rgba(167,139,250,0.3); border-radius: 2px; }
-
-        /* Drag handle */
-        .sheet-handle {
-            width: 40px; height: 4px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 2px;
-            margin: 12px auto 0;
-        }
-
-        /* Sheet close button */
-        .sheet-close {
-            position: sticky;
-            top: 0;
-            display: flex;
-            justify-content: flex-end;
-            padding: 8px 16px 0;
-            background: linear-gradient(180deg, #0f0a1e 80%, transparent 100%);
-            z-index: 10;
-        }
-        .sheet-close-btn {
-            width: 32px; height: 32px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.15);
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            color: white;
-        }
-        .sheet-close-btn:hover {
-            background: rgba(255,255,255,0.2);
-            transform: scale(1.1);
-        }
-
-        /* Course card inside sheet */
-        .course-card {
-            background: linear-gradient(135deg, rgba(30,20,50,0.8) 0%, rgba(20,14,35,0.9) 100%);
-            border: 1px solid rgba(167,139,250,0.25);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.2s ease;
-        }
-        .course-card:hover {
-            border-color: rgba(167,139,250,0.5);
-            box-shadow: 0 0 24px rgba(139,92,246,0.2);
-        }
+        .sheet-handle { width: 40px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px; margin: 12px auto 0; }
+        .sheet-close { position: sticky; top: 0; display: flex; justify-content: flex-end; padding: 8px 16px 0; background: linear-gradient(180deg, #0f0a1e 80%, transparent 100%); z-index: 10; }
+        .sheet-close-btn { width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease; color: white; }
+        .sheet-close-btn:hover { background: rgba(255,255,255,0.2); transform: scale(1.1); }
+        .course-card { background: linear-gradient(135deg, rgba(30,20,50,0.8) 0%, rgba(20,14,35,0.9) 100%); border: 1px solid rgba(167,139,250,0.25); border-radius: 16px; overflow: hidden; }
+        .curriculum-row { display: flex; align-items: flex-start; gap: 10px; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .curriculum-row:last-child { border-bottom: none; }
+        .curriculum-num { width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(135deg, #7c3aed, #4f46e5); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; color: white; flex-shrink: 0; margin-top: 1px; }
     </style>
 </head>
 <body class="bg-gradient-to-br from-black via-gray-900 to-red-950 min-h-screen">
     <div class="max-w-md mx-auto px-4 pb-8">
 
-        <!-- โปรไฟล์ -->
         <div class="text-center mb-8">
             <div class="relative -mx-4 mb-6">
                 <img src="https://i.postimg.cc/SQ9gc9RG/sanea-khxng-kh-nmi-cape-nt-xngkhe-a-yexa-khe-ath-kc-nghwa-di-th-kx-xde-xr-tae-xx-de-xr-th-di-cape-nt-xngm-kh-nphaph.png" alt="Cover" class="w-full h-56 object-cover rounded-t-lg">
             </div>
             <h1 class="text-2xl font-bold text-white mb-4 mt-2">PRO FRESH</h1>
-
             <div class="flex items-center justify-center gap-2 mb-3">
                 <span class="tap-hint text-base">👇</span>
-                <span class="tap-hint text-gray-400 text-xs tracking-widest uppercase" style="animation-delay: 0.15s;">ติดตามได้ที่</span>
-                <span class="tap-hint text-base" style="animation-delay: 0.3s;">👇</span>
+                <span class="tap-hint text-gray-400 text-xs tracking-widest uppercase" style="animation-delay:0.15s;">ติดตามได้ที่</span>
+                <span class="tap-hint text-base" style="animation-delay:0.3s;">👇</span>
             </div>
-
-            <!-- Social Icons -->
             <div class="flex justify-center items-start gap-5 mb-5">
                 <a href="https://www.youtube.com/@ProFreshGOTOTHEMOON" target="_blank" class="social-item">
-                    <div class="social-btn" style="background-color:#FF0000;">
-                        <svg fill="white" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                    </div>
+                    <div class="social-btn" style="background-color:#FF0000;"><svg fill="white" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
                     <span class="social-label">YouTube</span>
                 </a>
                 <a href="https://web.facebook.com/profresh.trading/" target="_blank" class="social-item">
-                    <div class="social-btn" style="background-color:#1877F2;">
-                        <svg fill="white" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                    </div>
+                    <div class="social-btn" style="background-color:#1877F2;"><svg fill="white" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div>
                     <span class="social-label">Facebook</span>
                 </a>
                 <a href="https://www.tiktok.com/@profresh.gotothemoon" target="_blank" class="social-item">
-                    <div class="social-btn" style="background-color:#111;border:1px solid #444;">
-                        <svg fill="white" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
-                    </div>
+                    <div class="social-btn" style="background-color:#111;border:1px solid #444;"><svg fill="white" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></div>
                     <span class="social-label">TikTok</span>
                 </a>
                 <a href="https://www.instagram.com/profresh.trading/" target="_blank" class="social-item">
-                    <div class="social-btn" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);">
-                        <svg fill="white" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-                    </div>
+                    <div class="social-btn" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);"><svg fill="white" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></div>
                     <span class="social-label">Instagram</span>
                 </a>
             </div>
-
             <p class="text-gray-300 text-sm leading-relaxed px-4">
                 สอนเทรด ระบบแก่นตลาด<br>
                 จากกราฟสู่กำไร จากความรู้สู่อิสระภาพ📈<br>
@@ -172,7 +82,6 @@
             </p>
         </div>
 
-        <!-- ปุ่ม LINE -->
         <div class="mb-4">
             <a href="https://lin.ee/AnwMO9t" target="_blank" class="elegant-btn btn-line">
                 <span class="flex items-center justify-center gap-2">
@@ -182,7 +91,6 @@
             </a>
         </div>
 
-        <!-- ปุ่มดูคอร์ส → Scroll ลงไปที่ section การ์ด -->
         <div class="mb-4">
             <button onclick="document.getElementById('course-section').scrollIntoView({behavior:'smooth'})" class="elegant-btn btn-course w-full cursor-pointer">
                 <span class="flex items-center justify-center gap-2">
@@ -192,7 +100,6 @@
             </button>
         </div>
 
-        <!-- ปุ่ม EBC -->
         <div class="mb-8">
             <a href="https://www.toebc.com/Fresh008" target="_blank" class="elegant-btn btn-ebc">
                 <span class="flex items-center justify-center gap-2">
@@ -203,7 +110,7 @@
             </a>
         </div>
 
-        <!-- ===== E-BOOK CARD (standalone) ===== -->
+        <!-- E-BOOK -->
         <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl overflow-hidden border border-green-700/50 shadow-lg shadow-green-900/20 mb-8">
             <img src="https://i.postimg.cc/ydrdq66h/d-sin-th-y-ngmi-di-t-ngch-x.png" alt="E-Book MULTIVERSE" class="w-full h-auto object-contain">
             <div class="p-4">
@@ -218,49 +125,34 @@
             </div>
         </div>
 
-        <!-- ===== COURSE SECTION HEADER ===== -->
+        <!-- COURSE SECTION -->
         <div id="course-section" class="flex items-center justify-between mb-3 -mx-1 px-1">
             <h2 class="text-base font-bold text-white tracking-wide">📚 คอร์สของเรา</h2>
             <span class="text-xs text-gray-500">เลื่อนดูได้ →</span>
         </div>
 
-        <!-- ===== HORIZONTAL SCROLL CARDS ===== -->
         <div class="relative -mx-4">
             <div id="course-scroll" class="flex gap-3 overflow-x-auto px-4 pb-3 snap-x snap-mandatory" style="scrollbar-width:none;-ms-overflow-style:none;">
-
-                <!-- Card 1: LEGEND -->
                 <div class="snap-start flex-shrink-0 w-44 bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl border border-yellow-700/40 overflow-hidden cursor-pointer hover:border-yellow-500/70 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]" onclick="openCourseSheet(0)">
-                    <div class="relative">
-                        <img src="https://i.postimg.cc/3NsKVJMF/LEGEND.png" alt="LEGEND" class="w-full h-52 object-cover object-top">
-
-                    </div>
+                    <img src="https://i.postimg.cc/3NsKVJMF/LEGEND.png" alt="LEGEND" class="w-full h-52 object-cover object-top">
                     <div class="p-3">
                         <p class="text-yellow-400 text-xs font-bold leading-tight mb-1">GO TO THE MOON</p>
                         <p class="text-gray-400 text-xs leading-tight">LEGEND TRADER</p>
                         <div class="mt-2 w-full bg-yellow-600/20 border border-yellow-600/40 text-yellow-300 text-xs font-semibold py-1.5 rounded-full text-center">ดูรายละเอียด</div>
                     </div>
                 </div>
-
-                <!-- Card 2: DEMAND & SUPPLY -->
                 <div class="snap-start flex-shrink-0 w-44 bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl border border-blue-700/40 overflow-hidden cursor-pointer hover:border-blue-500/70 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]" onclick="openCourseSheet(1)">
-                    <div class="relative">
-                        <img src="https://i.postimg.cc/Sx5wGthT/DS.png" alt="DS" class="w-full h-52 object-cover object-top">
-
-                    </div>
+                    <img src="https://i.postimg.cc/Sx5wGthT/DS.png" alt="DS" class="w-full h-52 object-cover object-top">
                     <div class="p-3">
                         <p class="text-blue-400 text-xs font-bold leading-tight mb-1">DEMAND LINE</p>
                         <p class="text-gray-400 text-xs leading-tight">& SUPPLY LINE</p>
                         <div class="mt-2 w-full bg-blue-600/20 border border-blue-600/40 text-blue-300 text-xs font-semibold py-1.5 rounded-full text-center">ดูรายละเอียด</div>
                     </div>
                 </div>
-
-                <!-- Card 3: มือใหม่ (Coming Soon) -->
                 <div class="snap-start flex-shrink-0 w-44 bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl border border-purple-700/30 overflow-hidden opacity-70">
-                    <div class="relative">
-                        <div class="w-full h-52 bg-gradient-to-br from-purple-900/50 to-gray-900 flex flex-col items-center justify-center gap-2">
-                            <span class="text-4xl">🌱</span>
-                            <span class="text-purple-300 text-xs font-bold tracking-widest uppercase">Coming Soon</span>
-                        </div>
+                    <div class="w-full h-52 bg-gradient-to-br from-purple-900/50 to-gray-900 flex flex-col items-center justify-center gap-2">
+                        <span class="text-4xl">🌱</span>
+                        <span class="text-purple-300 text-xs font-bold tracking-widest uppercase">Coming Soon</span>
                     </div>
                     <div class="p-3">
                         <p class="text-purple-400 text-xs font-bold leading-tight mb-1">คอร์สมือใหม่</p>
@@ -268,14 +160,10 @@
                         <div class="mt-2 w-full bg-gray-700/40 border border-gray-600/30 text-gray-500 text-xs font-semibold py-1.5 rounded-full text-center">เร็วๆ นี้</div>
                     </div>
                 </div>
-
-                <!-- Card 4: 1on1 (Coming Soon) -->
                 <div class="snap-start flex-shrink-0 w-44 bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl border border-pink-700/30 overflow-hidden opacity-70">
-                    <div class="relative">
-                        <div class="w-full h-52 bg-gradient-to-br from-pink-900/50 to-gray-900 flex flex-col items-center justify-center gap-2">
-                            <span class="text-4xl">🎯</span>
-                            <span class="text-pink-300 text-xs font-bold tracking-widest uppercase">Coming Soon</span>
-                        </div>
+                    <div class="w-full h-52 bg-gradient-to-br from-pink-900/50 to-gray-900 flex flex-col items-center justify-center gap-2">
+                        <span class="text-4xl">🎯</span>
+                        <span class="text-pink-300 text-xs font-bold tracking-widest uppercase">Coming Soon</span>
                     </div>
                     <div class="p-3">
                         <p class="text-pink-400 text-xs font-bold leading-tight mb-1">คลาส 1 on 1</p>
@@ -283,25 +171,59 @@
                         <div class="mt-2 w-full bg-gray-700/40 border border-gray-600/30 text-gray-500 text-xs font-semibold py-1.5 rounded-full text-center">เร็วๆ นี้</div>
                     </div>
                 </div>
-
             </div>
         </div>
 
-        <!-- Scroll dots indicator -->
         <div class="flex justify-center gap-1.5 mt-3 mb-8" id="scroll-dots">
-            <div class="dot w-2 h-2 rounded-full bg-white transition-all duration-300"></div>
+            <div class="dot h-2 rounded-full bg-white transition-all duration-300" style="width:20px"></div>
             <div class="dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300"></div>
             <div class="dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300"></div>
             <div class="dot w-2 h-2 rounded-full bg-white/30 transition-all duration-300"></div>
+        </div>
+
+        <!-- ===== REVIEWS SECTION ===== -->
+        <div class="mt-2 mb-3 -mx-1 px-1">
+            <h2 class="text-base font-bold text-white tracking-wide">🙏 ขอขอบคุณคำชมดีๆ</h2>
+        </div>
+
+        <div class="relative -mx-4 mb-8">
+            <!-- fade edges -->
+            <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-6 z-10" style="background:linear-gradient(to right,rgba(0,0,0,0.6),transparent)"></div>
+            <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-6 z-10" style="background:linear-gradient(to left,rgba(0,0,0,0.6),transparent)"></div>
+
+            <div id="review-scroll" class="flex gap-3 overflow-x-auto px-4 pb-2" style="scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:smooth;">
+                <div class="flex-shrink-0 rounded-2xl overflow-hidden border border-white/10 bg-gray-900/60 shadow-lg" style="max-width:220px;">
+                    <img src="https://i.postimg.cc/fyM4Pyrr/s-f-a-s-n-ange-n-thangkar-re-ybng-ay-khxb-kradas-xeksar-A4-naewt-ng.jpg" alt="review" class="w-full h-auto object-contain block">
+                </div>
+                <div class="flex-shrink-0 rounded-2xl overflow-hidden border border-white/10 bg-gray-900/60 shadow-lg" style="max-width:220px;">
+                    <img src="https://i.postimg.cc/5ysrk3vz/a36703c9-0914-4c03-8aa8-237e6f8a112c.jpg" alt="review" class="w-full h-auto object-contain block">
+                </div>
+                <div class="flex-shrink-0 rounded-2xl overflow-hidden border border-white/10 bg-gray-900/60 shadow-lg" style="max-width:220px;">
+                    <img src="https://i.postimg.cc/J4hvHfVt/5adb7bea-9540-4328-9f34-1b3e37d91256.jpg" alt="review" class="w-full h-auto object-contain block">
+                </div>
+                <div class="flex-shrink-0 rounded-2xl overflow-hidden border border-white/10 bg-gray-900/60 shadow-lg" style="max-width:220px;">
+                    <img src="https://i.postimg.cc/hG01rGVG/ae36fa42-034a-4cd9-8205-d244d1d50b39.jpg" alt="review" class="w-full h-auto object-contain block">
+                </div>
+                <div class="flex-shrink-0 rounded-2xl overflow-hidden border border-white/10 bg-gray-900/60 shadow-lg" style="max-width:220px;">
+                    <img src="https://i.postimg.cc/Dyt6fH22/f2451022-12de-424b-9739-3f3439eee3ae.jpg" alt="review" class="w-full h-auto object-contain block">
+                </div>
+                <div class="flex-shrink-0 rounded-2xl overflow-hidden border border-white/10 bg-gray-900/60 shadow-lg" style="max-width:220px;">
+                    <img src="https://i.postimg.cc/vZF7wnzd/0d6f769f-4501-4518-a99a-e0a66ab0336e.jpg" alt="review" class="w-full h-auto object-contain block">
+                </div>
+                <div class="flex-shrink-0 rounded-2xl overflow-hidden border border-white/10 bg-gray-900/60 shadow-lg" style="max-width:220px;">
+                    <img src="https://i.postimg.cc/rm8QX4qy/2efe7e2b-2ae1-4cf2-94b7-c3806e4619eb.jpg" alt="review" class="w-full h-auto object-contain block">
+                </div>
+                <div class="flex-shrink-0 rounded-2xl overflow-hidden border border-white/10 bg-gray-900/60 shadow-lg" style="max-width:220px;">
+                    <img src="https://i.postimg.cc/tJn6LRnW/69e2b0b7-8c4b-427e-88df-60b1f11aed9f.jpg" alt="review" class="w-full h-auto object-contain block">
+                </div>
+            </div>
         </div>
 
         <div class="text-center mt-2 text-gray-500 text-xs">© 2024 PRO FRESH. All rights reserved</div>
     </div>
 
-    <!-- ============ OVERLAY ============ -->
     <div id="course-overlay" onclick="closeCourseSheet()"></div>
 
-    <!-- ============ BOTTOM SHEET ============ -->
     <div id="course-sheet">
         <div class="sheet-handle"></div>
         <div class="sheet-close">
@@ -309,17 +231,11 @@
                 <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
         </div>
-
-        <div class="px-4 pb-10" id="sheet-content">
-            <!-- content injected by JS -->
-        </div>
+        <div class="px-4 pb-10" id="sheet-content"></div>
     </div>
 
     <script>
-        if (window.location.hash) {
-            history.replaceState(null, null, window.location.pathname);
-            window.scrollTo(0, 0);
-        }
+        if (window.location.hash) { history.replaceState(null, null, window.location.pathname); window.scrollTo(0, 0); }
 
         const courses = [
             {
@@ -329,10 +245,20 @@
                 sub: 'ครบ จบ ทางลัดสู่มือโปร',
                 subNote: 'แล้วการเทรดจะเป็นเรื่องง่ายสำหรับคุณ',
                 subColor: 'text-purple-300',
-                tag: 'text-purple-400',
                 who: 'สำหรับคนที่อยาก <span class="text-yellow-400 font-semibold">"เข้าใจตลาดทั้งระบบ"</span> ไม่เทรดมั่ว อ่านโครงสร้างแก่นตลาดออก หยุดปัญหา <span class="text-red-400 font-semibold">"กราฟหลอก"</span>',
                 btnColor: 'from-yellow-600 to-orange-500 hover:from-yellow-500 hover:to-orange-400 shadow-yellow-600/30',
-                borderColor: 'border-yellow-600/20'
+                borderColor: 'border-yellow-600/20',
+                curriculum: [
+                    { num:'1', text:'MULTIVERSE', note:'จบการโดนกราฟหลอก' },
+                    { num:'2', text:'Market Structure', note:'เจาะลึกแท่งเทียนแบบที่ไม่ใช่ตำราทั่วไปออนไลน์' },
+                    { num:'3', text:'Logic & Psychology', note:'วิธีคิดที่ทำให้เชื่อในแผน 100% และชนะอย่างยั่งยืน' },
+                    { num:'4', text:'Money Management', note:'' },
+                    { num:'5', text:'Risk Management', note:'เข้าใจสิ่งนี้ป้องกันการล้างพอร์ต' },
+                    { num:'6', text:'Risk Reward Ratio', note:'' },
+                    { num:'7', text:'Demand & Supply Line', note:'จุดเข้าคมๆ มีสถิติรองรับจริง' },
+                    { num:'8', text:'ความลับ Sideway', note:'เมื่อ Sideway แล้วไปทางไหน มีคำตอบ' },
+                ],
+                extra: 'มีการอัพเดทเนื้อหาตลอดชีพ และในคลาสหากมีข้อสงสัยในส่วนไหน สอบถามได้ทันที ProFresh จะอธิบายให้ครับ 😊'
             },
             {
                 img: 'https://i.postimg.cc/Sx5wGthT/DS.png',
@@ -341,29 +267,48 @@
                 sub: 'จุดเข้าจากพฤติกรรมราคา',
                 subNote: 'จุดเข้ามีสถิติรองรับจริง',
                 subColor: 'text-blue-300',
-                tag: 'text-blue-400',
                 who: 'สำหรับคนที่เข้าเทรดแล้ว <span class="text-red-400 font-semibold">"ลังเลทุกครั้ง"</span> ไม่รู้ว่าควรเข้าจุดไหน อยากได้จุดเข้าแบบมีเหตุผล ทำซ้ำได้ <span class="text-green-400 font-semibold">"ไม่เดากราฟ"</span>',
                 btnColor: 'from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 shadow-blue-600/30',
-                borderColor: 'border-blue-600/20'
+                borderColor: 'border-blue-600/20',
+                curriculum: null,
+                extra: null
             }
         ];
+
+        function buildCurriculum(curriculum) {
+            if (!curriculum) return '';
+            const rows = curriculum.map(c => `
+                <div class="curriculum-row">
+                    <div class="curriculum-num">${c.num}</div>
+                    <div>
+                        <p class="text-white text-xs font-semibold leading-tight">${c.text}</p>
+                        ${c.note ? `<p class="text-gray-400 text-xs mt-0.5">${c.note}</p>` : ''}
+                    </div>
+                </div>`).join('');
+            return `
+                <div class="bg-black/30 rounded-xl p-3 mb-3 border border-purple-600/20">
+                    <p class="text-xs text-yellow-400 font-bold mb-2">📋 8 บทเรียนครอบคลุม 🚀</p>
+                    ${rows}
+                </div>`;
+        }
 
         function openCourseSheet(index) {
             const c = courses[index];
             document.getElementById('sheet-content').innerHTML = `
-                <h2 class="text-xl font-bold text-center mb-5 bg-gradient-to-r ${c.titleColor} bg-clip-text text-transparent">${c.title}</h2>
-                <div class="course-card mb-5">
+                <h2 class="text-xl font-bold text-center mb-4 bg-gradient-to-r ${c.titleColor} bg-clip-text text-transparent">${c.title}</h2>
+                <div class="course-card mb-4">
                     <img src="${c.img}" alt="${c.title}" class="w-full h-auto object-cover">
-                    <div class="p-5">
-                        <p class="${c.subColor} font-semibold text-sm mb-2">${c.sub}<br><span class="text-gray-400 text-xs">(${c.subNote})</span></p>
-                        <div class="bg-black/30 rounded-xl p-3 mb-4 border ${c.borderColor}">
-                            <p class="text-xs ${c.tag} font-semibold mb-1">✨ เหมาะกับใคร</p>
+                    <div class="p-4">
+                        <p class="${c.subColor} font-semibold text-sm mb-3">${c.sub}<br><span class="text-gray-400 text-xs">(${c.subNote})</span></p>
+                        <div class="bg-black/30 rounded-xl p-3 mb-3 border ${c.borderColor}">
+                            <p class="text-xs text-purple-400 font-semibold mb-1">✨ เหมาะกับใคร</p>
                             <p class="text-xs text-gray-300 leading-relaxed">${c.who}</p>
                         </div>
+                        ${buildCurriculum(c.curriculum)}
+                        ${c.extra ? `<div class="bg-purple-900/20 border border-purple-500/20 rounded-xl p-3 mb-4"><p class="text-xs text-purple-200 leading-relaxed">⭐ ${c.extra}</p></div>` : ''}
                         <a href="https://lin.ee/AnwMO9t" target="_blank" class="block w-full bg-gradient-to-r ${c.btnColor} text-white font-semibold py-3 px-6 rounded-full text-center transition-all duration-200 shadow-lg text-sm">สอบถามรายละเอียดเพิ่มเติม</a>
                     </div>
-                </div>
-            `;
+                </div>`;
             document.getElementById('course-overlay').classList.add('active');
             document.getElementById('course-sheet').classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -378,7 +323,6 @@
 
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCourseSheet(); });
 
-        // Swipe down to close
         let startY = 0;
         const sheet = document.getElementById('course-sheet');
         sheet.addEventListener('touchstart', e => { startY = e.touches[0].clientY; }, { passive: true });
@@ -386,7 +330,6 @@
             if (e.changedTouches[0].clientY - startY > 80 && sheet.scrollTop === 0) closeCourseSheet();
         }, { passive: true });
 
-        // Scroll dots
         const scroller = document.getElementById('course-scroll');
         const dots = document.querySelectorAll('#scroll-dots .dot');
         scroller.addEventListener('scroll', () => {
@@ -395,14 +338,26 @@
             dots.forEach((d, i) => {
                 d.style.background = i === idx ? 'white' : 'rgba(255,255,255,0.25)';
                 d.style.width = i === idx ? '20px' : '8px';
-                d.style.borderRadius = '4px';
             });
         });
 
-        // Hide scrollbar CSS
         const style = document.createElement('style');
-        style.textContent = '#course-scroll::-webkit-scrollbar{display:none}';
+        style.textContent = '#course-scroll::-webkit-scrollbar{display:none}#review-scroll::-webkit-scrollbar{display:none}';
         document.head.appendChild(style);
+
+        // Auto-scroll reviews
+        const reviewScroll = document.getElementById('review-scroll');
+        let reviewDir = 1;
+        let reviewPaused = false;
+        reviewScroll.addEventListener('touchstart', () => { reviewPaused = true; }, { passive: true });
+        reviewScroll.addEventListener('touchend', () => { setTimeout(() => reviewPaused = false, 2000); }, { passive: true });
+        setInterval(() => {
+            if (reviewPaused) return;
+            const maxScroll = reviewScroll.scrollWidth - reviewScroll.clientWidth;
+            if (reviewScroll.scrollLeft >= maxScroll - 2) reviewDir = -1;
+            if (reviewScroll.scrollLeft <= 2) reviewDir = 1;
+            reviewScroll.scrollLeft += reviewDir * 1.2;
+        }, 20);
     </script>
 </body>
 </html>
