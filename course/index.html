@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>คอร์สทั้งหมด | PRO FRESH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+Thai:wght@500;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0a0806;
+    --panel:#131009;
+    --panel-2:#181309;
+    --gold:#c9a862;
+    --gold-light:#e9d8a8;
+    --gold-dim:#8a7038;
+    --cream:#f2ead8;
+    --muted:#9c9384;
+    --line:rgba(201,168,98,0.18);
+    --burgundy:#5c1a1a;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--black);
+    color:var(--cream);
+    font-family:'Sarabun',sans-serif;
+    font-weight:400;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:84px;
+  }
+  .serif-en{font-family:'Cormorant Garamond',serif;}
+  .serif-th{font-family:'Noto Serif Thai',serif;}
+  a{color:inherit;}
+  .wrap{max-width:640px; margin:0 auto; padding:0 22px;}
+
+  /* ---------- texture ---------- */
+  .grain{
+    position:fixed; inset:0; pointer-events:none; z-index:1; opacity:0.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:40;
+    background:rgba(10,8,6,0.86); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{
+    max-width:640px; margin:0 auto; padding:14px 22px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{font-family:'Cormorant Garamond',serif; font-size:20px; letter-spacing:0.14em; color:var(--gold-light); font-weight:600;}
+  .brand span{color:var(--gold-dim);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative; padding:54px 0 34px; text-align:center; overflow:hidden;
+    background:
+      radial-gradient(ellipse at 50% -10%, rgba(201,168,98,0.14), transparent 60%),
+      var(--black);
+  }
+  .hero-eyebrow{
+    font-size:10px; letter-spacing:0.28em; color:var(--gold-dim); text-transform:uppercase; margin-bottom:14px; font-weight:300;
+  }
+  .hero h1{
+    font-size:27px; line-height:1.45; color:var(--gold-light); font-weight:600; margin-bottom:12px; letter-spacing:0.01em;
+  }
+  .hero p{
+    color:var(--muted); font-size:13.5px; max-width:340px; margin:0 auto; line-height:1.8;
+  }
+
+  /* candlestick signature motif */
+  .chart-strip{ width:100%; margin:24px auto 0; display:block; }
+  .chart-strip .wick{stroke:var(--gold-dim); stroke-width:1.4;}
+  .chart-strip .body-up{fill:var(--gold);}
+  .chart-strip .body-dn{fill:var(--gold-dim);}
+
+  .divider{
+    display:flex; align-items:center; gap:14px; margin:8px auto 0; max-width:200px;
+  }
+  .divider .ln{flex:1; height:1px; background:linear-gradient(90deg,transparent,var(--gold-dim),transparent);}
+  .divider .dot{width:5px; height:5px; border-radius:50%; background:var(--gold);}
+
+  /* ---------- section shell ---------- */
+  section.course{ padding:58px 0 10px; border-top:1px solid var(--line); position:relative;}
+  .kicker{
+    display:flex; align-items:center; gap:10px; margin-bottom:10px;
+  }
+  .kicker .idx{
+    font-family:'Cormorant Garamond',serif; font-size:13px; color:var(--gold-dim); letter-spacing:0.18em;
+  }
+  .badge{
+    display:inline-block; font-size:11px; letter-spacing:0.1em; padding:4px 11px; border-radius:100px;
+    border:1px solid var(--gold-dim); color:var(--gold-light); background:rgba(201,168,98,0.07);
+  }
+  .badge.bestseller{ border-color:var(--gold); color:var(--black); background:var(--gold); font-weight:600;}
+  .badge.limited{ border-color:var(--burgundy); color:#e8b8b8; background:rgba(92,26,26,0.25); }
+
+  h2.course-title{
+    font-family:'Noto Serif Thai',serif; font-weight:700; font-size:25px; color:var(--cream);
+    margin:10px 0 6px; line-height:1.4;
+  }
+  .course-sub{ color:var(--gold-light); font-size:14.5px; font-weight:500; margin-bottom:2px;}
+  .course-note{ color:var(--muted); font-size:13px; margin-bottom:20px;}
+
+  .media{
+    width:100%; border-radius:14px; overflow:hidden; border:1px solid var(--line);
+    margin-bottom:22px; background:var(--panel);
+  }
+  .media img{ width:100%; display:block; }
+
+  .who-box{
+    background:var(--panel); border:1px solid var(--line); border-radius:12px;
+    padding:16px 18px; margin-bottom:22px;
+  }
+  .who-box .lbl{ font-size:11.5px; letter-spacing:0.14em; color:var(--gold-dim); text-transform:uppercase; margin-bottom:8px;}
+  .who-box p{ font-size:14px; color:#d9d0bd; }
+  .who-box .hl{ color:var(--gold-light); font-weight:600; }
+
+  .curriculum{ margin-bottom:22px; }
+  .curriculum .lbl{ font-size:11.5px; letter-spacing:0.14em; color:var(--gold-dim); text-transform:uppercase; margin-bottom:12px;}
+  .lesson-row{
+    display:flex; gap:13px; align-items:flex-start; padding:11px 0; border-bottom:1px solid var(--line);
+  }
+  .lesson-row:last-child{border-bottom:none;}
+  .lesson-num{
+    font-family:'Cormorant Garamond',serif; font-size:16px; color:var(--gold);
+    width:26px; flex-shrink:0; padding-top:1px;
+  }
+  .lesson-text .t{ font-size:14.5px; color:var(--cream); font-weight:500; }
+  .lesson-text .d{ font-size:12.5px; color:var(--muted); margin-top:2px; }
+
+  .perks{ margin-bottom:22px; }
+  .perks .lbl{ font-size:11.5px; letter-spacing:0.14em; color:var(--gold-dim); text-transform:uppercase; margin-bottom:10px;}
+  .perks ul{ list-style:none; }
+  .perks li{ font-size:14px; color:#d9d0bd; padding:6px 0 6px 20px; position:relative; }
+  .perks li::before{ content:'—'; position:absolute; left:0; color:var(--gold-dim); }
+
+  .price-box{
+    background:var(--panel-2); border:1px solid var(--line); border-radius:14px;
+    padding:20px; margin-bottom:16px; display:flex; align-items:center; justify-content:space-between; gap:12px;
+  }
+  .price-main{ display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
+  .price-now{ font-family:'Cormorant Garamond',serif; font-size:30px; color:var(--gold-light); font-weight:600; }
+  .price-was{ font-size:14px; color:var(--muted); text-decoration:line-through; }
+  .price-save{ font-size:11px; color:#e8b8b8; background:rgba(92,26,26,0.3); border:1px solid var(--burgundy); padding:3px 9px; border-radius:100px; margin-top:6px; display:inline-block;}
+  .price-unit{ font-size:12px; color:var(--muted); }
+
+  .cta{
+    display:block; text-align:center; width:100%; padding:15px 20px; border-radius:100px;
+    background:linear-gradient(135deg,#d9bd7c,var(--gold) 55%,#a6893f);
+    color:#1a1305; font-weight:700; font-size:14.5px; letter-spacing:0.02em;
+    text-decoration:none; margin-bottom:52px;
+    box-shadow:0 8px 24px rgba(201,168,98,0.18);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .cta:hover{ transform:translateY(-1px); box-shadow:0 10px 30px rgba(201,168,98,0.3); }
+
+  /* ---------- closing ---------- */
+  .closing{ text-align:center; padding:60px 0 20px; border-top:1px solid var(--line); }
+  .closing .mark{ font-family:'Cormorant Garamond',serif; font-size:22px; color:var(--gold-light); margin-bottom:10px; }
+  .closing p{ font-size:13.5px; color:var(--muted); max-width:360px; margin:0 auto 26px; }
+  .closing .cta{ max-width:280px; margin:0 auto 40px; }
+  .foot-note{ font-size:11.5px; color:#5c574c; }
+
+  /* ---------- sticky bottom CTA ---------- */
+  .sticky-cta{
+    position:fixed; bottom:0; left:0; right:0; z-index:50;
+    background:rgba(10,8,6,0.92); backdrop-filter:blur(12px);
+    border-top:1px solid var(--line); padding:12px 22px;
+  }
+  .sticky-cta-inner{
+    max-width:640px; margin:0 auto; display:flex; align-items:center; gap:14px;
+  }
+  .sticky-cta-text{ font-size:12.5px; color:var(--muted); flex:1; }
+  .sticky-cta-text b{ color:var(--gold-light); font-weight:600; display:block; font-size:13.5px; }
+  .sticky-cta a{
+    flex-shrink:0; padding:11px 22px; border-radius:100px; background:var(--gold); color:#1a1305;
+    font-weight:700; font-size:13px; text-decoration:none; white-space:nowrap;
+  }
+
+  @media(min-width:520px){
+    .hero h1{font-size:44px;}
+  }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">PRO FRESH <span>| MULTIVERSE</span></div>
+    <a href="https://lin.ee/AnwMO9t" target="_blank" style="font-size:12px; color:var(--gold-light); letter-spacing:0.05em;">สอบถาม →</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">The Complete Curriculum</div>
+    <h1 class="serif-th">คอร์สทั้งหมด<br>ของ PRO FRESH</h1>
+    <p>ระบบแก่นตลาด จากกราฟสู่กำไร จากความรู้สู่อิสรภาพ — เลือกเส้นทางที่ใช่สำหรับคุณ</p>
+
+    <svg class="chart-strip" viewBox="0 0 400 64" preserveAspectRatio="xMidYMid meet" style="max-width:260px; height:44px; opacity:0.6;">
+      <g>
+        <line class="wick" x1="20" y1="8" x2="20" y2="52"/><rect class="body-dn" x="15" y="20" width="10" height="22" rx="1"/>
+        <line class="wick" x1="55" y1="14" x2="55" y2="46"/><rect class="body-up" x="50" y="18" width="10" height="16" rx="1"/>
+        <line class="wick" x1="90" y1="20" x2="90" y2="50"/><rect class="body-dn" x="85" y="30" width="10" height="14" rx="1"/>
+        <line class="wick" x1="125" y1="6" x2="125" y2="44"/><rect class="body-up" x="120" y="10" width="10" height="24" rx="1"/>
+        <line class="wick" x1="160" y1="16" x2="160" y2="48"/><rect class="body-up" x="155" y="20" width="10" height="18" rx="1"/>
+        <line class="wick" x1="195" y1="4" x2="195" y2="36"/><rect class="body-up" x="190" y="8" width="10" height="20" rx="1"/>
+        <line class="wick" x1="230" y1="12" x2="230" y2="40"/><rect class="body-dn" x="225" y="18" width="10" height="14" rx="1"/>
+        <line class="wick" x1="265" y1="2" x2="265" y2="30"/><rect class="body-up" x="260" y="6" width="10" height="18" rx="1"/>
+        <line class="wick" x1="300" y1="8" x2="300" y2="34"/><rect class="body-up" x="295" y="10" width="10" height="18" rx="1"/>
+        <line class="wick" x1="335" y1="-2" x2="335" y2="24"/><rect class="body-up" x="330" y="0" width="10" height="16" rx="1"/>
+        <line class="wick" x1="370" y1="4" x2="370" y2="26"/><rect class="body-up" x="365" y="6" width="10" height="14" rx="1"/>
+      </g>
+    </svg>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ================= LEGEND TRADER ================= -->
+  <section class="course" id="legend">
+    <div class="kicker">
+      <span class="idx serif-en">I.</span>
+      <span class="badge bestseller">คอร์สขายดีที่สุด</span>
+    </div>
+    <h2 class="course-title serif-th">GO TO THE MOON<br>THE LEGEND TRADER</h2>
+    <p class="course-sub">ครบ จบ ทางลัดสู่มือโปร — คลิปคลาสเรียนได้ตลอดชีพ</p>
+    <p class="course-note">แล้วการเทรดจะเป็นเรื่องง่ายสำหรับคุณ</p>
+
+    <div class="media"><img src="https://i.postimg.cc/ydGc1T9R/bth.png" alt="Legend Trader"></div>
+
+    <div class="who-box">
+      <div class="lbl">เหมาะกับใคร</div>
+      <p>สำหรับคนที่อยาก<span class="hl">"เข้าใจตลาดทั้งระบบ"</span> ไม่เทรดมั่ว อ่านโครงสร้างแก่นตลาดออก หยุดปัญหา<span class="hl">"กราฟหลอก"</span>ได้อย่างถาวร</p>
+    </div>
+
+    <div class="curriculum">
+      <div class="lbl">9 บทเรียนครอบคลุม</div>
+      <div class="lesson-row"><div class="lesson-num">01</div><div class="lesson-text"><div class="t">MULTIVERSE</div><div class="d">จบการโดนกราฟหลอก</div></div></div>
+      <div class="lesson-row"><div class="lesson-num">02</div><div class="lesson-text"><div class="t">Demand and Supply Line</div><div class="d">จุดเข้าคมๆ มีสถิติรองรับจริง</div></div></div>
+      <div class="lesson-row"><div class="lesson-num">03</div><div class="lesson-text"><div class="t">จุดเปลี่ยนเทรนด์</div><div class="d">เจาะลึกการกลับตัวฉับพลัน</div></div></div>
+      <div class="lesson-row"><div class="lesson-num">04</div><div class="lesson-text"><div class="t">Market Structure</div><div class="d">เจาะลึกแท่งเทียนแบบที่ไม่ใช่ตำราทั่วไปออนไลน์</div></div></div>
+      <div class="lesson-row"><div class="lesson-num">05</div><div class="lesson-text"><div class="t">Logic & Psychology</div><div class="d">วิธีคิดที่ทำให้เชื่อในแผน 100% และชนะอย่างยั่งยืน</div></div></div>
+      <div class="lesson-row"><div class="lesson-num">06</div><div class="lesson-text"><div class="t">Money Management</div></div></div>
+      <div class="lesson-row"><div class="lesson-num">07</div><div class="lesson-text"><div class="t">Risk Management</div><div class="d">เข้าใจสิ่งนี้ป้องกันการล้างพอร์ต</div></div></div>
+      <div class="lesson-row"><div class="lesson-num">08</div><div class="lesson-text"><div class="t">Risk Reward Ratio</div></div></div>
+      <div class="lesson-row"><div class="lesson-num">09</div><div class="lesson-text"><div class="t">ความลับ Sideway</div><div class="d">เมื่อ Sideway แล้วไปทางไหน มีคำตอบ</div></div></div>
+    </div>
+
+    <div class="perks">
+      <div class="lbl">สิ่งที่ได้รับเพิ่ม</div>
+      <ul>
+        <li>อัปเดตเนื้อหาตลอดชีพ</li>
+        <li>สงสัยจุดไหนในคลาส สอบถาม ProFresh ได้ทันที</li>
+      </ul>
+    </div>
+
+    <div class="price-box">
+      <div class="price-main">
+        <div>
+          <div style="display:flex; align-items:baseline; gap:9px;">
+            <span class="price-now">8,900 ฿</span>
+            <span class="price-was">14,900 ฿</span>
+          </div>
+          <span class="price-save">ประหยัด 6,000 บาท</span>
+        </div>
+      </div>
+      <div class="price-unit">เรียนครั้งเดียว<br>ตลอดชีพ</div>
+    </div>
+    <a class="cta" href="https://lin.ee/AnwMO9t" target="_blank">สมัครคอร์ส LEGEND TRADER</a>
+  </section>
+
+  <!-- ================= DEMAND & SUPPLY ================= -->
+  <section class="course" id="demand-supply">
+    <div class="kicker">
+      <span class="idx serif-en">II.</span>
+      <span class="badge">โฟกัสจุดเข้าเทรด</span>
+    </div>
+    <h2 class="course-title serif-th">DEMAND LINE<br>& SUPPLY LINE</h2>
+    <p class="course-sub">จุดเข้าจากพฤติกรรมราคา</p>
+    <p class="course-note">จุดเข้ามีสถิติรองรับจริง</p>
+
+    <div class="media"><img src="https://i.postimg.cc/6phH9Dp1/bth-(1).png" alt="Demand Line & Supply Line"></div>
+
+    <div class="who-box">
+      <div class="lbl">เหมาะกับใคร</div>
+      <p>สำหรับคนที่เข้าเทรดแล้ว<span class="hl">"ลังเลทุกครั้ง"</span> ไม่รู้ว่าควรเข้าจุดไหน อยากได้จุดเข้าแบบมีเหตุผล ทำซ้ำได้<span class="hl">"ไม่เดากราฟ"</span></p>
+    </div>
+
+    <div class="curriculum">
+      <div class="lbl">ไฮไลท์เนื้อหาในคอร์ส</div>
+      <div class="lesson-row"><div class="lesson-num">01</div><div class="lesson-text"><div class="t">Entry, TP & SL</div><div class="d">วางจุดเข้า จุดทำกำไร และจุดตัดขาดทุน</div></div></div>
+      <div class="lesson-row"><div class="lesson-num">02</div><div class="lesson-text"><div class="t">Money Management</div><div class="d">จัดสรรเงินทุนอย่างเป็นระบบ</div></div></div>
+      <div class="lesson-row"><div class="lesson-num">03</div><div class="lesson-text"><div class="t">Risk Management</div><div class="d">ควบคุมความเสียหายและป้องกันการล้างพอร์ต</div></div></div>
+    </div>
+
+    <div class="price-box">
+      <div class="price-main">
+        <span class="price-now">5,900 ฿</span>
+      </div>
+      <div class="price-unit">เรียนครั้งเดียว<br>ตลอดชีพ</div>
+    </div>
+    <a class="cta" href="https://lin.ee/AnwMO9t" target="_blank">สมัครคอร์ส DEMAND & SUPPLY LINE</a>
+  </section>
+
+  <!-- ================= PRIVATE 1-ON-1 ================= -->
+  <section class="course" id="private">
+    <div class="kicker">
+      <span class="idx serif-en">III.</span>
+      <span class="badge limited">รับจำนวนจำกัด · สอนสดตัวต่อตัว</span>
+    </div>
+    <h2 class="course-title serif-th">PRIVATE MENTORSHIP<br>1-ON-1</h2>
+    <p class="course-sub">หลักสูตรส่วนตัวแบบครบระบบ สอนสดตัวต่อตัวโดย ProFresh</p>
+    <p class="course-note">ไม่ขายฝัน เน้นให้อยู่ในตลาดได้จริง — สอนจนเข้าใจ</p>
+
+    <div class="media"><img src="https://i.postimg.cc/cLWsrBXk/1on1.png" alt="Private Class 1-on-1"></div>
+
+    <div class="who-box">
+      <div class="lbl">เหมาะกับใคร</div>
+      <p>ไม่ว่าจะเริ่มจาก 0 หรือเทรดแล้วยังหลงทาง <span class="hl">Private Mentorship</span> จะช่วยจัดระบบความคิด การอ่านกราฟ และการคุม Risk ให้เห็นโครงสร้างและวิธีคิดที่ชัดขึ้น</p>
+    </div>
+
+    <div class="curriculum">
+      <div class="lbl">ครอบคลุม 10 บทเรียนหลัก</div>
+      <div class="lesson-row"><div class="lesson-num">01</div><div class="lesson-text"><div class="t">MULTIVERSE</div><div class="d">เข้าใจพฤติกรรมตลาดและลดการโดนกราฟหลอก</div></div></div>
+      <div class="lesson-row"><div class="lesson-num">02</div><div class="lesson-text"><div class="t">Market Structure</div><div class="d">อ่านโครงสร้างและทิศทางตลาด</div></div></div>
+      <div class="lesson-row"><div class="lesson-num">03</div><div class="lesson-text"><div class="t">Candlestick Logic</div><div class="d">เข้าใจแท่งเทียนจากเหตุผลของราคา</div></div></div>
+      <div class="lesson-row"><div class="lesson-num">04</div><div class="lesson-text"><div class="t">Logic & Trading Psychology</div><div class="d">สร้างความเชื่อมั่นในแผน</div></div></div>
+      <div class="lesson-row"><div class="lesson-num">05</div><div class="lesson-text"><div class="t">Money Management</div><div class="d">จัดสรรเงินทุนอย่างเป็นระบบ</div></div></div>
+      <div class="lesson-row"><div class="lesson-num">06</div><div class="lesson-text"><div class="t">Risk Management</div><div class="d">ควบคุมความเสียหายและป้องกันการล้างพอร์ต</div></div></div>
+      <div class="lesson-row"><div class="lesson-num">07</div><div class="lesson-text"><div class="t">Risk–Reward Ratio</div><div class="d">วางความคุ้มค่าก่อนเข้าเทรด</div></div></div>
+      <div class="lesson-row"><div class="lesson-num">08</div><div class="lesson-text"><div class="t">Demand & Supply Line</div><div class="d">หาจุดเข้าอย่างมีเหตุผลและมีสถิติรองรับ</div></div></div>
+      <div class="lesson-row"><div class="lesson-num">09</div><div class="lesson-text"><div class="t">ความลับของ Sideway</div><div class="d">ประเมินทิศทางหลังตลาดสะสมกำลัง</div></div></div>
+      <div class="lesson-row"><div class="lesson-num">10</div><div class="lesson-text"><div class="t">Entry, TP & SL</div><div class="d">วางจุดเข้า จุดทำกำไร และจุดตัดขาดทุน</div></div></div>
+    </div>
+
+    <div class="perks">
+      <div class="lbl">สิ่งที่ได้รับ</div>
+      <ul>
+        <li>เรียนสดแบบตัวต่อตัว</li>
+        <li>ปรับเนื้อหาให้เหมาะกับระดับของผู้เรียน</li>
+        <li>วิเคราะห์จุดอ่อนและพฤติกรรมการเทรด</li>
+        <li>ฝึกวิเคราะห์กราฟจริง</li>
+        <li>สร้าง Trading Plan ส่วนบุคคล</li>
+        <li>สอบถามและติดตามผลหลังเรียน 30 วัน</li>
+      </ul>
+    </div>
+
+    <div class="who-box" style="margin-bottom:22px;">
+      <div class="lbl">ระยะเวลาเรียน</div>
+      <p>จำนวนครั้งและระยะเวลาเรียนขึ้นอยู่กับความเหมาะสมของผู้เรียน โดยสอนจนครบตามขอบเขต 10 บทเรียนที่กำหนด ไม่เร่งเนื้อหา</p>
+    </div>
+
+    <div class="price-box">
+      <div class="price-main">
+        <span class="price-now">18,900 ฿</span>
+      </div>
+      <div class="price-unit">Private<br>Mentorship</div>
+    </div>
+    <a class="cta" href="https://lin.ee/AnwMO9t" target="_blank">สมัคร PRIVATE MENTORSHIP 1-ON-1</a>
+  </section>
+
+  <div class="closing">
+    <div class="mark serif-en">Pro Fresh</div>
+    <p>ไม่แน่ใจว่าคอร์สไหนเหมาะกับคุณ? ทักไลน์มาคุยกันได้ ยินดีให้คำแนะนำก่อนตัดสินใจ</p>
+    <a class="cta" href="https://lin.ee/AnwMO9t" target="_blank">ทักไลน์สอบถามคอร์ส</a>
+    <div class="foot-note">© 2024 PRO FRESH · GO TO THE MOON. All rights reserved.</div>
+  </div>
+
+</main>
+
+<div class="sticky-cta">
+  <div class="sticky-cta-inner">
+    <div class="sticky-cta-text"><b>สนใจคอร์สไหน?</b>ทักไลน์คุยกับ ProFresh ได้เลย</div>
+    <a href="https://lin.ee/AnwMO9t" target="_blank">ทักไลน์</a>
+  </div>
+</div>
+
+</body>
+</html>
