@@ -60,20 +60,26 @@
 
   /* ---------- hero ---------- */
   .hero{
-    position:relative; padding:54px 0 34px; text-align:center; overflow:hidden;
+    position:relative; padding:44px 0 34px; text-align:center; overflow:hidden;
     background:
       radial-gradient(ellipse at 50% -10%, rgba(201,168,98,0.14), transparent 60%),
       var(--black);
   }
   .hero-eyebrow{
-    font-size:10px; letter-spacing:0.28em; color:var(--gold-dim); text-transform:uppercase; margin-bottom:14px; font-weight:300;
-  }
-  .hero h1{
-    font-size:27px; line-height:1.45; color:var(--gold-light); font-weight:600; margin-bottom:12px; letter-spacing:0.01em;
+    font-size:10px; letter-spacing:0.28em; color:var(--gold-dim); text-transform:uppercase; margin-bottom:18px; font-weight:300;
   }
   .hero p{
     color:var(--muted); font-size:13.5px; max-width:340px; margin:0 auto; line-height:1.8;
   }
+
+  /* ---------- hero video ---------- */
+  .video-frame{
+    position:relative; width:100%; aspect-ratio:16/9; margin:0 auto 22px;
+    border-radius:16px; overflow:hidden; background:#000;
+    border:1px solid rgba(201,168,98,0.5);
+    box-shadow:0 0 0 4px rgba(201,168,98,0.06), 0 10px 30px rgba(0,0,0,0.6);
+  }
+  .video-frame iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
 
   .chart-strip{ width:100%; margin:24px auto 0; display:block; }
   .chart-strip .wick{stroke:var(--gold-dim); stroke-width:1.4;}
@@ -228,11 +234,6 @@
     box-shadow:0 4px 14px rgba(6,199,85,0.35);
   }
   .sticky-cta a svg{ width:16px; height:16px; flex-shrink:0; }
-
-  @media(min-width:520px){
-    .hero h1{font-size:44px;}
-    .card-actions{ }
-  }
 </style>
 </head>
 <body>
@@ -248,7 +249,12 @@
 <header class="hero">
   <div class="wrap">
     <div class="hero-eyebrow">The Complete Curriculum</div>
-    <h1 class="serif-th">คอร์สทั้งหมด<br>ของ PRO FRESH</h1>
+
+    <!-- วิดีโอ YouTube: เปลี่ยนรหัสวิดีโอตรง -U4QDxYQ1cA -->
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/-U4QDxYQ1cA?rel=0&modestbranding=1" title="PRO FRESH Video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
     <p>ระบบแก่นตลาด จากกราฟสู่กำไร จากความรู้สู่อิสรภาพ — เลือกเส้นทางที่ใช่สำหรับคุณ</p>
 
     <svg class="chart-strip" viewBox="0 0 400 64" preserveAspectRatio="xMidYMid meet" style="max-width:260px; height:44px; opacity:0.6;">
