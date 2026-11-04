@@ -72,9 +72,30 @@ body{font-family:'Sarabun',sans-serif;background:#050403 radial-gradient(ellipse
 .curriculum-num{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--gold-light),var(--gold-dim));display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#120d04;flex-shrink:0;margin-top:1px}
 .sheet-cta{display:block;width:100%;background:linear-gradient(135deg,#8a7038,#e9d8a8 50%,#c9a862);color:#120d04;font-weight:600;padding:12px 24px;border-radius:9999px;text-align:center;font-size:14px;box-shadow:0 4px 16px rgba(201,168,98,.25)}
 #course-scroll::-webkit-scrollbar,#review-scroll::-webkit-scrollbar{display:none}
+
+/* ===== LIVE PROMO (เพิ่มใหม่) ===== */
+.live-card{position:relative;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#1f160a,#0a0805 70%);border:1px solid rgba(233,216,168,.7);box-shadow:0 0 0 4px rgba(201,168,98,.08),0 0 32px rgba(201,168,98,.22),0 10px 30px rgba(0,0,0,.6)}
+.live-card::after{content:'';position:absolute;inset:0;border-radius:20px;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,240,200,.09) 50%,transparent 70%);background-size:250% 100%;animation:live-shine 4s linear infinite}
+@keyframes live-shine{0%{background-position:150% 0}100%{background-position:-100% 0}}
+.live-badge{position:absolute;top:12px;left:12px;z-index:2;display:flex;align-items:center;gap:6px;background:#d6232b;color:#fff;font-size:11px;font-weight:700;letter-spacing:.12em;padding:4px 10px;border-radius:9999px;box-shadow:0 2px 10px rgba(214,35,43,.55)}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#fff;animation:live-blink 1.1s ease-in-out infinite}
+@keyframes live-blink{0%,100%{opacity:1}50%{opacity:.2}}
+.cd-box{flex:1;background:rgba(0,0,0,.45);border:1px solid rgba(201,168,98,.35);border-radius:12px;padding:8px 0 6px;text-align:center}
+.cd-num{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;line-height:1;color:var(--gold-light)}
+.cd-lbl{font-size:10px;color:var(--muted);margin-top:3px}
+.btn-live{background:linear-gradient(135deg,#8a7038 0%,#e9d8a8 45%,#c9a862 75%,#8a7038 100%);color:#120d04;border:1px solid rgba(233,216,168,.6);box-shadow:0 2px 18px rgba(201,168,98,.35)}
+.btn-live.on-air{background:linear-gradient(135deg,#a3141b,#e0373e 55%,#a3141b);color:#fff;border-color:rgba(255,180,180,.6);box-shadow:0 0 22px rgba(224,55,62,.5);animation:pulse-glow 1.6s ease-in-out infinite}
+.live-ribbon{display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(90deg,#3a0b0d,#6e1418 50%,#3a0b0d);color:#ffe9e9;font-size:12px;font-weight:600;padding:8px 12px;text-decoration:none;border-bottom:1px solid rgba(224,55,62,.4)}
 </style>
 </head>
 <body>
+
+<!-- ===== LIVE RIBBON บนสุด (เพิ่มใหม่) ===== -->
+<a href="#live-promo" id="live-ribbon" class="live-ribbon">
+  <span class="live-dot" style="background:#ff5a60"></span>
+  <span id="live-ribbon-text">LIVE คลาสสอนสด 21 พ.ย. นี้ — แตะดูรายละเอียด</span>
+</a>
+
 <div class="max-w-md mx-auto px-4 pb-8">
 
   <div class="text-center mb-8">
@@ -89,15 +110,15 @@ body{font-family:'Sarabun',sans-serif;background:#050403 radial-gradient(ellipse
     </div>
     <div class="flex justify-center items-start gap-5 mb-5">
       <a href="https://www.youtube.com/@ProFreshGOTOTHEMOON" target="_blank" class="social-item">
-        <div class="social-btn"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
+        <div class="social-btn"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.070 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.930 24 12 24 12s0-3.930-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
         <span class="social-label">YouTube</span>
       </a>
       <a href="https://web.facebook.com/profresh.trading/" target="_blank" class="social-item">
-        <div class="social-btn"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div>
+        <div class="social-btn"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.990 4.388 10.954 10.125 11.854v-8.385H7.078v-3.470h3.047V9.430c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.830c-1.491 0-1.956.925-1.956 1.874v2.250h3.328l-.532 3.470h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div>
         <span class="social-label">Facebook</span>
       </a>
       <a href="https://www.tiktok.com/@profresh.gotothemoon" target="_blank" class="social-item">
-        <div class="social-btn"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></div>
+        <div class="social-btn"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.080-1.030-2.020-1.190-3.440-3.370-3.650-5.710-.020-.500-.030-1-.010-1.490.180-1.900 1.120-3.720 2.580-4.960 1.660-1.440 3.980-2.130 6.150-1.720.020 1.480-.040 2.960-.040 4.440-.990-.320-2.150-.230-3.020.370-.630.410-1.110 1.040-1.360 1.750-.210.510-.150 1.070-.140 1.610.240 1.640 1.820 3.020 3.500 2.870 1.120-.010 2.190-.660 2.770-1.610.190-.330.400-.670.410-1.060.100-1.790.060-3.570.070-5.360.010-4.030-.010-8.050.020-12.070z"/></svg></div>
         <span class="social-label">TikTok</span>
       </a>
       <a href="https://www.instagram.com/profresh.trading/" target="_blank" class="social-item">
@@ -111,6 +132,28 @@ body{font-family:'Sarabun',sans-serif;background:#050403 radial-gradient(ellipse
       โฟกัสการทำกำไรอย่างยั่งยืน<br>
       <span class="gold font-semibold">สนใจคอร์สเรียน แอดไลน์ ได้เลยครับ</span>
     </p>
+  </div>
+
+  <!-- ===== LIVE PROMO CARD (เพิ่มใหม่) ===== -->
+  <div id="live-promo" class="live-card mb-8" style="scroll-margin-top:16px">
+    <div class="live-badge"><span class="live-dot"></span><span id="live-badge-text">LIVE</span></div>
+    <img src="https://i.postimg.cc/d0tPBNQt/d-sin-th-y-ngmi-di-t-ngch-x-(10).png" alt="LIVE คลาสสอนสด PRO FRESH" class="w-full h-auto block">
+    <div class="p-4 relative z-[1]">
+      <p class="text-xs font-semibold tracking-widest mb-1" style="color:#ff7a7f" id="live-status">🔴 ไลฟ์คลาสสอนสด</p>
+      <h3 class="serif gold-text text-xl font-bold leading-snug mb-1">คลาสสอนสด กับ ProFresh</h3>
+      <p class="text-sm mb-3" style="color:#d8cfbc" id="live-when">📅 วันเสาร์ที่ 21 พ.ย. 2569</p>
+
+      <div id="live-countdown" class="flex gap-2 mb-4">
+        <div class="cd-box"><div class="cd-num" id="cd-d">00</div><div class="cd-lbl">วัน</div></div>
+        <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-lbl">ชั่วโมง</div></div>
+        <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-lbl">นาที</div></div>
+        <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-lbl">วินาที</div></div>
+      </div>
+
+      <a href="https://lin.ee/AnwMO9t" target="_blank" id="live-cta" class="elegant-btn btn-live">
+        <span class="text-sm tracking-wide" id="live-cta-text">ลงทะเบียน / รับลิงก์ไลฟ์ทาง LINE →</span>
+      </a>
+    </div>
   </div>
 
   <div class="mb-4">
@@ -246,6 +289,57 @@ body{font-family:'Sarabun',sans-serif;background:#050403 radial-gradient(ellipse
 </div>
 
 <script>
+/* =========================================================
+   ⚙️ ตั้งค่าไลฟ์ — แก้แค่ตรงนี้
+   start : วัน-เวลาเริ่มไลฟ์ (เวลาไทย +07:00)
+   hours : ไลฟ์ยาวประมาณกี่ชั่วโมง (ไว้คำนวณช่วง "กำลังไลฟ์")
+   whenText : ข้อความวันเวลาที่โชว์บนการ์ด
+   linkBefore : ปุ่มก่อนไลฟ์ (ลงทะเบียน)
+   linkLive   : ปุ่มตอนกำลังไลฟ์ (ใส่ลิงก์ไลฟ์ YouTube/FB ได้)
+   ========================================================= */
+const LIVE = {
+  start: '2026-11-21T19:00:00+07:00',
+  hours: 2,
+  whenText: '📅 วันเสาร์ที่ 21 พ.ย. 2569 · 19:00 น.',
+  linkBefore: 'https://lin.ee/AnwMO9t',
+  linkLive: 'https://www.youtube.com/@ProFreshGOTOTHEMOON/live'
+};
+
+(function liveInit(){
+  const $ = id => document.getElementById(id);
+  const startMs = new Date(LIVE.start).getTime();
+  const endMs = startMs + LIVE.hours * 3600 * 1000;
+  $('live-when').textContent = LIVE.whenText;
+  const pad = n => String(n).padStart(2,'0');
+
+  function tick(){
+    const now = Date.now();
+    if (now >= endMs) {            // ไลฟ์จบ → ซ่อนอัตโนมัติ
+      $('live-promo').style.display = 'none';
+      $('live-ribbon').style.display = 'none';
+      clearInterval(timer); return;
+    }
+    if (now >= startMs) {          // กำลังไลฟ์
+      $('live-countdown').style.display = 'none';
+      $('live-status').textContent = '🔴 กำลังไลฟ์อยู่ตอนนี้!';
+      $('live-badge-text').textContent = 'ON AIR';
+      $('live-cta').href = LIVE.linkLive;
+      $('live-cta').classList.add('on-air');
+      $('live-cta-text').textContent = '▶ เข้าดูไลฟ์ตอนนี้';
+      $('live-ribbon-text').textContent = 'กำลังไลฟ์คลาสสอนสดอยู่ตอนนี้ — แตะเพื่อเข้าดู';
+      return;
+    }
+    let s = Math.floor((startMs - now) / 1000);   // นับถอยหลัง
+    $('cd-d').textContent = pad(Math.floor(s / 86400)); s %= 86400;
+    $('cd-h').textContent = pad(Math.floor(s / 3600));  s %= 3600;
+    $('cd-m').textContent = pad(Math.floor(s / 60));
+    $('cd-s').textContent = pad(s % 60);
+    $('live-cta').href = LIVE.linkBefore;
+  }
+  tick();
+  const timer = setInterval(tick, 1000);
+})();
+
 if (window.location.hash) { history.replaceState(null, null, window.location.pathname); window.scrollTo(0, 0); }
 
 const courses = [
