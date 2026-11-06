@@ -85,6 +85,20 @@ body{font-family:'Sarabun',sans-serif;background:#050403 radial-gradient(ellipse
 .cd-lbl{font-size:10px;color:var(--muted);margin-top:3px}
 .btn-live{background:linear-gradient(135deg,#8a7038 0%,#e9d8a8 45%,#c9a862 75%,#8a7038 100%);color:#120d04;border:1px solid rgba(233,216,168,.6);box-shadow:0 2px 18px rgba(201,168,98,.35)}
 .btn-live.on-air{background:linear-gradient(135deg,#a3141b,#e0373e 55%,#a3141b);color:#fff;border-color:rgba(255,180,180,.6);box-shadow:0 0 22px rgba(224,55,62,.5);animation:pulse-glow 1.6s ease-in-out infinite}
+/* ===== E-BOOK (เพิ่มใหม่) ===== */
+.ebook-card{position:relative;border-radius:18px;overflow:hidden;background:linear-gradient(145deg,#1a140a,#0a0805);border:1px solid rgba(201,168,98,.45);box-shadow:0 6px 24px rgba(201,168,98,.08)}
+.ebook-card.bundle{border-color:rgba(233,216,168,.75);box-shadow:0 0 0 4px rgba(201,168,98,.08),0 0 28px rgba(201,168,98,.2),0 10px 30px rgba(0,0,0,.6)}
+.bundle-badge{position:absolute;top:10px;left:10px;z-index:2;background:linear-gradient(135deg,#a3141b,#e0373e);color:#fff;font-size:11px;font-weight:700;letter-spacing:.06em;padding:4px 10px;border-radius:9999px;box-shadow:0 2px 10px rgba(214,35,43,.5)}
+.price-big{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:700;line-height:1;background:linear-gradient(135deg,var(--gold-light),var(--gold) 55%,var(--gold-dim));-webkit-background-clip:text;background-clip:text;color:transparent}
+.price-sm{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;line-height:1;color:var(--gold-light)}
+.save-tag{background:rgba(214,35,43,.18);border:1px solid rgba(224,55,62,.55);color:#ff8a8f;font-size:11px;font-weight:700;padding:2px 8px;border-radius:9999px}
+.ebook-mini{flex-shrink:0;width:68%;display:flex;flex-direction:column;border-radius:14px;overflow:hidden;background:linear-gradient(180deg,#1a140a,#0b0905);border:1px solid var(--line);transition:border-color .2s ease}
+.ebook-mini:hover{border-color:var(--gold)}
+.ebook-mini .ebook-body{padding:10px 12px}
+.btn-buy{background:linear-gradient(135deg,#8a7038,#e9d8a8 50%,#c9a862);color:#120d04;border-color:rgba(233,216,168,.6)}
+.ebook-body{padding:14px;display:flex;flex-direction:column;flex:1}
+#ebook-scroll::-webkit-scrollbar{display:none}
+.elegant-btn.btn-sm{padding:10px 12px;font-size:13px}
 .live-ribbon{display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(90deg,#3a0b0d,#6e1418 50%,#3a0b0d);color:#ffe9e9;font-size:12px;font-weight:600;padding:8px 12px;text-decoration:none;border-bottom:1px solid rgba(224,55,62,.4)}
 </style>
 </head>
@@ -174,17 +188,68 @@ body{font-family:'Sarabun',sans-serif;background:#050403 radial-gradient(ellipse
     </a>
   </div>
 
-  <!-- E-BOOK -->
-  <div class="rounded-2xl overflow-hidden mb-8" style="background:linear-gradient(145deg,#1a140a,#0a0805);border:1px solid rgba(201,168,98,.45);box-shadow:0 6px 24px rgba(201,168,98,.08)">
-    <img src="https://i.postimg.cc/MZmS1yzd/d-sin-th-y-ngmi-di-t-ngch-x-(9).png" alt="E-Book MULTIVERSE" class="w-full h-auto object-contain">
-    <div class="p-4">
-      <div class="flex items-center justify-between gap-3">
-        <div>
-          <h3 class="text-sm font-bold leading-tight mb-0.5" style="color:var(--cream)">E-Book : MULTIVERSE</h3>
-          <p class="text-xs" style="color:var(--muted)">ปูพื้นฐาน MULTIVERSE สู่กำไรยั่งยืน</p>
+  <!-- ===== E-BOOK SECTION ===== -->
+  <div id="ebook-section" class="flex items-center justify-between mb-3 -mx-1 px-1" style="scroll-margin-top:16px">
+    <h2 class="sec-title">📖 E-Book ของเรา</h2>
+  </div>
+
+  <!-- โปรซื้อคู่ 2 เล่ม (การ์ดเดี่ยว) -->
+  <div class="ebook-card bundle mb-5">
+    <div class="bundle-badge">🔥 โปรพิเศษ</div>
+    <img src="https://i.postimg.cc/PJygbwmS/Luxury-Gold-Trading-Ebook-Bundle-Ad.png" alt="โปรซื้อคู่ MULTIVERSE + BEYOND LOGIC" class="w-full h-auto block">
+    <div class="ebook-body">
+      <h3 class="text-sm font-bold leading-tight mb-0.5" style="color:var(--cream)">ซื้อคู่ MULTIVERSE + BEYOND LOGIC</h3>
+      <p class="text-xs mb-2" style="color:var(--muted)">ระบบอ่านกราฟ + จิตวิทยาการเทรด ครบในชุดเดียว</p>
+      <div class="flex items-end gap-2 mb-3 flex-wrap">
+        <span class="price-big">459</span><span class="text-sm" style="color:var(--gold-light)">บาท</span>
+        <span class="text-xs" style="color:var(--muted)">ปกติ <s>548</s></span>
+        <span class="save-tag">ประหยัด 89.-</span>
+      </div>
+      <a href="https://lin.ee/AnwMO9t" target="_blank" class="elegant-btn btn-line">
+        <span class="text-sm tracking-wide">สั่งซื้อชุดคู่ทาง LINE →</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- แยกซื้อทีละเล่ม (การ์ดเลื่อน) -->
+  <div class="flex items-center justify-between mb-2 -mx-1 px-1">
+    <p class="text-xs font-semibold" style="color:var(--gold-light)">หรือเลือกซื้อแยกเล่ม</p>
+    <span class="text-xs" style="color:var(--muted)">เลื่อนดูได้ →</span>
+  </div>
+
+  <div class="relative -mx-4">
+    <div id="ebook-scroll" class="flex gap-3 overflow-x-auto px-4 pb-3 snap-x snap-mandatory" style="scrollbar-width:none;-ms-overflow-style:none;">
+
+      <!-- MULTIVERSE -->
+      <div class="ebook-mini snap-start">
+        <img src="https://i.postimg.cc/MZmS1yzd/d-sin-th-y-ngmi-di-t-ngch-x-(9).png" alt="E-Book MULTIVERSE" class="w-full h-auto block">
+        <div class="ebook-body">
+          <h3 class="text-xs font-bold leading-tight mb-0.5" style="color:var(--cream)">E-Book : MULTIVERSE</h3>
+          <p class="text-[11px] mb-1.5" style="color:var(--muted)">ปูพื้นฐาน MULTIVERSE สู่กำไรยั่งยืน</p>
+          <div class="flex items-end gap-1 mb-2"><span class="price-sm">289</span><span class="text-xs" style="color:var(--gold-light)">บาท</span></div>
+          <a href="https://lin.ee/AnwMO9t" target="_blank" class="pcard-btn mt-auto block">สั่งซื้อทาง LINE</a>
         </div>
       </div>
+
+      <!-- BEYOND LOGIC -->
+      <div class="ebook-mini snap-start">
+        <img src="https://i.postimg.cc/k5V7nfxm/Beyond-Logic-Trading-Thai-E-Book-Promotion.png" alt="E-Book BEYOND LOGIC TRADING" class="w-full h-auto block">
+        <div class="ebook-body">
+          <h3 class="text-xs font-bold leading-tight mb-0.5" style="color:var(--cream)">E-Book : BEYOND LOGIC</h3>
+          <p class="text-[11px] mb-1.5" style="color:var(--muted)">จิตวิทยาการเทรด + ประสบการณ์ 7 ปี</p>
+          <div class="flex items-end gap-1 mb-2"><span class="price-sm">259</span><span class="text-xs" style="color:var(--gold-light)">บาท</span></div>
+          <div class="grid grid-cols-2 gap-1.5 mt-auto">
+            <a href="https://drive.google.com/file/d/103F_y4RYmvESLZkXfzxoKmWEJG3g3xMe/view?usp=drive_link" target="_blank" class="pcard-btn block" style="margin-top:0">📖 ตัวอย่างฟรี</a>
+            <a href="https://lin.ee/AnwMO9t" target="_blank" class="pcard-btn block btn-buy" style="margin-top:0">สั่งซื้อ</a>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
+
+  <div class="flex justify-center gap-1.5 mt-2 mb-8" id="ebook-dots">
+    <div class="dot active"></div><div class="dot"></div>
   </div>
 
   <div class="divider mb-6"></div>
@@ -437,6 +502,14 @@ scroller.addEventListener('scroll', () => {
   const cardW = scroller.firstElementChild.offsetWidth + 12;
   const idx = Math.round(scroller.scrollLeft / cardW);
   dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+});
+
+const ebookScroller = document.getElementById('ebook-scroll');
+const ebookDots = document.querySelectorAll('#ebook-dots .dot');
+ebookScroller.addEventListener('scroll', () => {
+  const w = ebookScroller.firstElementChild.offsetWidth + 12;
+  const idx = Math.round(ebookScroller.scrollLeft / w);
+  ebookDots.forEach((d, i) => d.classList.toggle('active', i === idx));
 });
 </script>
 </body>
